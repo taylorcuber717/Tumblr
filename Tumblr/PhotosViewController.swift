@@ -21,6 +21,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITabBarDel
         
         photosTableView.dataSource = self
         photosTableView.rowHeight = 235
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
+        photosTableView.insertSubview(refreshControl, at: 0)
         
         getDataFromTumblrAPI()
         
@@ -70,6 +73,27 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITabBarDel
         }
         task.resume()
         
+    }
+    
+    @objc func refreshControlAction(_ refreshControl: UIRefreshControl) {
+        
+        // ... Create the URLRequest `myRequest` ...
+        let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        
+        // Configure session so that completion handler is executed on main UI thread
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        let task: URLSessionDataTask = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            // ... Use the new data to update the data source ...
+            
+            // Reload the tableView now that there is new data
+            self.photosTableView.reloadData()
+            
+            // Tell the refreshControl to stop spinning
+            refreshControl.endRefreshing()
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {

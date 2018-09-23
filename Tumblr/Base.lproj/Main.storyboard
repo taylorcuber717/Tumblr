@@ -39,6 +39,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="postImageView" destination="wFV-GT-SCA" id="HOq-Ku-jN4"/>
+                                            <segue destination="vcM-Ad-fU5" kind="show" id="zcz-jL-g5E"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -55,6 +56,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1075.3623188405797" y="132.06521739130434"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="LLC-64-5Cm">
+            <objects>
+                <viewController id="vcM-Ad-fU5" customClass="DetailsViewController" customModule="Tumblr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JK2-Sc-QvC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Veq-e4-v0i">
+                                <rect key="frame" x="0.0" y="64" width="414" height="252"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cBD-PC-USY"/>
+                    </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="Veq-e4-v0i" id="v3O-0t-pvB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5MS-tj-XMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1784.057971014493" y="132.06521739130434"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fwS-Hx-sdt">
